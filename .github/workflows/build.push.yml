@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     name: "Build"
     steps:
-      - run: echo "TAR_CMF=$( echo '${{ env.repo }}' | awk -F '[/-]' '{ print $2 }' )" >> $GITHUB_ENV
+      - run: echo "CMF=$( echo '${{ env.repo }}' | awk -F '[/-]' '{ print $2 }' )" >> $GITHUB_ENV
         shell: bash
-      - run: echo "TAR_NAME=$( echo '${{ env.repo }}' | awk -F '${{ env.TAR_CMF }}-' '{ print $2 }' )" >> $GITHUB_ENV
+      - run: echo "NAME=$( echo '${{ env.repo }}' | awk -F '${{ env.CMF }}-' '{ print $2 }' )" >> $GITHUB_ENV
         shell: bash
       - uses: ghastore/store-tar-build@main
         with:
           git_repo_src: "${{ env.domain }}/${{ env.repo }}.git"
-          git_repo_dst: "${{ env.domain }}/${{ env.owner }}-${{ env.TAR_CMF }}/${{ env.TAR_NAME }}.git"
+          git_repo_dst: "${{ env.domain }}/${{ env.owner }}-${{ env.CMF }}/${{ env.NAME }}.git"
           git_user: "${{ secrets.BOT_GITHUB_NAME }}"
           git_email: "${{ secrets.BOT_GITHUB_EMAIL }}"
           git_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
