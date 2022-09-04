@@ -1,0 +1,20 @@
+{
+  "@metadata": {
+    "authors": [
+      "Kitsune Solar"
+    ]
+  },
+  "mw-ext-list-desc": "Интеграция списка ресурсов METADATA. Специально для проектов [METADATA / FOUNDATION https://metadata.foundation/].",
+  "mw-ext-list-furs-chat": "Чат сообщества FURRY.",
+  "mw-ext-list-furs-news": "Новости о FURRY.",
+  "mw-ext-list-furs-stream": "Стримы сообщества FURRY.",
+  "mw-ext-list-furs-today": "Журнал сообщества FURRY.",
+  "mw-ext-list-furs-wiki": "WIKI-система сообщества FURRY.",
+  "mw-ext-list-radio-wtf": "Свободная интернет-радиостанция.",
+  "mw-ext-list-metadata-foundation": "Фонд по разработке и поддержке веб-технологий.",
+  "mw-ext-list-metastore-pro": "Платформа по исследованиям и разработкам METADATA.",
+  "mw-ext-list-flarum-help": "Поддержка CMS Flarum.",
+  "mw-ext-list-humhub-help": "Поддержка CMS HumHub.",
+  "mw-ext-list-ipb-help": "Поддержка CMS IPB.",
+  "mw-ext-list-xenforo-help": "Поддержка CMS XenForo."
+}
