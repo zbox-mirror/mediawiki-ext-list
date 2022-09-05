@@ -6,7 +6,7 @@
  * @file
  * @ingroup Extensions
  * @licence GNU GPL
- * @author Kitsune Solar
+ * @author z17 Dev
  */
 
 $magicWords = [];
@@ -14,7 +14,7 @@ $magicWords = [];
 /**
  * English.
  *
- * @author Kitsune Solar
+ * @author z17 Dev
  * ------------------------------------------------------------------------------------------------------------------ */
 
 $magicWords['en'] = [
@@ -24,7 +24,7 @@ $magicWords['en'] = [
 /**
  * Russian.
  *
- * @author Kitsune Solar
+ * @author z17 Dev
  * ------------------------------------------------------------------------------------------------------------------ */
 
 $magicWords['ru'] = [
