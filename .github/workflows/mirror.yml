@@ -4,9 +4,7 @@ on:
   - push
 
 env:
-  src_domain: "${{ github.server_url }}"
-  src_owner: "${{ github.repository_owner }}"
-  src_repo: "${{ github.repository }}"
+  dst_owner: "${{ github.repository_owner }}-mirror"
 
 jobs:
 
@@ -19,10 +17,9 @@ jobs:
     name: "GitHub"
     env:
       dst_domain: "${{ github.server_url }}"
-      dst_owner: "${{ github.repository_owner }}-mirror"
     steps:
       - run: |
-          echo "repo_name=$( echo '${{ env.src_repo }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
+          echo "repo_name=$( echo '${{ github.repository }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
         shell: bash
       - run: |
           curl -X POST \
@@ -34,7 +31,7 @@ jobs:
         shell: bash
       - uses: ghastore/mirror@main
         with:
-          src_repo: "${{ env.src_domain }}/${{ env.src_repo }}.git"
+          src_repo: "${{ github.server_url }}/${{ github.repository }}.git"
           src_user: "${{ secrets.BOT_GITHUB_NAME }}"
           src_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
           dst_repo: "${{ env.dst_domain }}/${{ env.dst_owner }}/${{ env.repo_name }}.git"
@@ -50,11 +47,10 @@ jobs:
     name: "GitLab"
     env:
       dst_domain: "https://gitlab.com"
-      dst_owner: "${{ github.repository_owner }}-mirror"
       dst_nsID: '57669711'
     steps:
       - run: |
-          echo "repo_name=$( echo '${{ env.src_repo }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
+          echo "repo_name=$( echo '${{ github.repository }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
         shell: bash
       - run: |
           curl -X POST \
@@ -66,7 +62,7 @@ jobs:
         shell: bash
       - uses: ghastore/mirror@main
         with:
-          src_repo: "${{ env.src_domain }}/${{ env.src_repo }}.git"
+          src_repo: "${{ github.server_url }}/${{ github.repository }}.git"
           src_user: "${{ secrets.BOT_GITHUB_NAME }}"
           src_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
           dst_repo: "${{ env.dst_domain }}/${{ env.dst_owner }}/${{ env.repo_name }}.git"
@@ -82,10 +78,9 @@ jobs:
     name: "Codeberg"
     env:
       dst_domain: "https://codeberg.org"
-      dst_owner: "${{ github.repository_owner }}-mirror"
     steps:
       - run: |
-          echo "repo_name=$( echo '${{ env.src_repo }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
+          echo "repo_name=$( echo '${{ github.repository }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
         shell: bash
       - run: |
           curl -X POST \
@@ -98,7 +93,7 @@ jobs:
         shell: bash
       - uses: ghastore/mirror@main
         with:
-          src_repo: "${{ env.src_domain }}/${{ env.src_repo }}.git"
+          src_repo: "${{ github.server_url }}/${{ github.repository }}.git"
           src_user: "${{ secrets.BOT_GITHUB_NAME }}"
           src_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
           dst_repo: "${{ env.dst_domain }}/${{ env.dst_owner }}/${{ env.repo_name }}.git"
