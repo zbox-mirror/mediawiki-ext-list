@@ -1,4 +1,4 @@
-name: "Repository"
+name: "Mirror"
 
 on:
   - push
@@ -16,7 +16,7 @@ jobs:
 
   mirror_github:
     runs-on: ubuntu-latest
-    name: "Mirror / GitHub"
+    name: "GitHub"
     env:
       dst_domain: "${{ github.server_url }}"
       dst_owner: "${{ github.repository_owner }}-mirror"
@@ -47,7 +47,7 @@ jobs:
 
   mirror_gitlab:
     runs-on: ubuntu-latest
-    name: "Mirror / GitLab"
+    name: "GitLab"
     env:
       dst_domain: "https://gitlab.com"
       dst_owner: "${{ github.repository_owner }}-mirror"
@@ -79,7 +79,7 @@ jobs:
 
   mirror_codeberg:
     runs-on: ubuntu-latest
-    name: "Mirror / Codeberg"
+    name: "Codeberg"
     env:
       dst_domain: "https://codeberg.org"
       dst_owner: "${{ github.repository_owner }}-mirror"
