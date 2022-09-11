@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\CMFStore;
+namespace MediaWiki\Extension\Z17DEV;
 
 use Parser, OutputPage, Skin;
 

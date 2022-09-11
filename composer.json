@@ -1,5 +1,5 @@
 {
-  "name": "cmfstore/mediawiki-ext-list",
+  "name": "zmarket/mediawiki-ext-list",
   "type": "mediawiki-extension",
   "description": "MediaWiki list extension.",
   "license": "MIT",
@@ -23,13 +23,13 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/cmfstore/mediawiki-ext-list/issues",
-    "source": "https://github.com/cmfstore/mediawiki-ext-list"
+    "issues": "https://github.com/zbox/mediawiki-ext-list/issues",
+    "source": "https://github.com/zbox/mediawiki-ext-list"
   },
   "require": {
     "php": ">=7.2",
     "composer/installers": "^1.0.1",
-    "cmfstore/mediawiki-ext-kernel": "*"
+    "zmarket/mediawiki-ext-kernel": "*"
   },
   "autoload": {
     "classmap": [
