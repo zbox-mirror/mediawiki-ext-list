@@ -4,7 +4,7 @@ on:
   - push
 
 env:
-  dst_owner: "zmarket"
+  owner: "zmarket"
 
 jobs:
   clone:
@@ -19,7 +19,7 @@ jobs:
           curl -X POST \
           -H 'Authorization: Bearer ${{ secrets.BOT_GITHUB_TOKEN }}' \
           -H 'Accept: application/vnd.github+json' \
-          '${{ github.api_url }}/orgs/${{ env.dst_owner }}/repos' \
+          '${{ github.api_url }}/orgs/${{ env.owner }}/repos' \
           -d '{"name":"${{ env.repo_name }}","private":false,"has_issues":false,"has_projects":false,"has_wiki":false}' \
           -s -o '/dev/null'
         shell: bash
@@ -28,6 +28,6 @@ jobs:
           src_repo: "${{ github.server_url }}/${{ github.repository }}.git"
           src_user: "${{ secrets.BOT_GITHUB_NAME }}"
           src_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
-          dst_repo: "${{ github.server_url }}/${{ env.dst_owner }}/${{ env.repo_name }}.git"
+          dst_repo: "${{ github.server_url }}/${{ env.owner }}/${{ env.repo_name }}.git"
           dst_user: "${{ secrets.BOT_GITHUB_NAME }}"
           dst_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
