@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Z17DEV;
+namespace MediaWiki\Extension\Z17;
 
 use Parser, OutputPage, Skin;
 
