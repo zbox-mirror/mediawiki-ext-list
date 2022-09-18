@@ -4,7 +4,8 @@ on:
   - push
 
 env:
-  owner: "zmarket"
+  OWNER: "zmarket"
+  USER_AGENT: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
 
 jobs:
   clone:
@@ -15,18 +16,18 @@ jobs:
       - name: "Get repository name"
         shell: bash
         run: |
-          echo "repo_name=$( echo '${{ github.repository }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
+          echo "REPO_NAME=$( echo '${{ github.repository }}' | awk -F '/' '{ print $2 }' )" >> $GITHUB_ENV
       - name: "Create repository"
         shell: bash
         run: |
-          http="$( curl -s -o '/dev/null' -I -w '%{http_code}' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36' '${{ github.server_url }}/${{ env.owner }}/${{ env.repo_name }}' )"
+          http="$( curl -s -o '/dev/null' -I -w '%{http_code}' -A '${{ env.USER_AGENT }}' '${{ github.server_url }}/${{ env.OWNER }}/${{ env.REPO_NAME }}' )"
           if [[ "${http}" -ne 200 ]]; then
             curl -X POST \
             -H 'Authorization: Bearer ${{ secrets.BOT_GITHUB_TOKEN }}' \
             -H 'Accept: application/vnd.github+json' \
-            -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36' \
-            '${{ github.api_url }}/orgs/${{ env.owner }}/repos' \
-            -d '{"name":"${{ env.repo_name }}","private":false,"has_issues":false,"has_projects":false,"has_wiki":false}'
+            -A '${{ env.USER_AGENT }}' \
+            '${{ github.api_url }}/orgs/${{ env.OWNER }}/repos' \
+            -d '{"name":"${{ env.REPO_NAME }}","private":false,"has_issues":false,"has_projects":false,"has_wiki":false}'
           fi
       - name: "Mirror repository"
         uses: ghastore/mirror@main
@@ -34,6 +35,6 @@ jobs:
           src_repo: "${{ github.server_url }}/${{ github.repository }}.git"
           src_user: "${{ secrets.BOT_GITHUB_NAME }}"
           src_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
-          dst_repo: "${{ github.server_url }}/${{ env.owner }}/${{ env.repo_name }}.git"
+          dst_repo: "${{ github.server_url }}/${{ env.OWNER }}/${{ env.REPO_NAME }}.git"
           dst_user: "${{ secrets.BOT_GITHUB_NAME }}"
           dst_token: "${{ secrets.BOT_GITHUB_TOKEN }}"
